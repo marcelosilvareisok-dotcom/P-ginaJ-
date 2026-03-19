@@ -29,18 +29,18 @@ export class ErrorBoundary extends Component<Props, State> {
   public render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen bg-red-50 flex flex-col items-center justify-center p-4">
-          <div className="bg-white p-6 rounded-xl shadow-lg max-w-md w-full">
-            <h2 className="text-2xl font-bold text-red-600 mb-4">Oops, algo deu errado!</h2>
-            <p className="text-gray-700 mb-4">
+        <div className="min-h-screen bg-[#f5f5f0] flex flex-col items-center justify-center p-4 font-sans">
+          <div className="bg-white p-10 rounded-3xl border border-editorial max-w-md w-full text-center">
+            <h2 className="text-3xl font-serif text-[#1c1c1a] mb-4">Algo deu errado</h2>
+            <p className="text-[#1c1c1a]/60 font-light mb-8">
               Ocorreu um erro inesperado. Por favor, tente recarregar a página.
             </p>
-            <pre className="bg-gray-100 p-4 rounded text-sm text-gray-800 overflow-auto max-h-40 mb-4">
+            <pre className="bg-[#f5f5f0] p-4 rounded-xl text-xs text-[#1c1c1a]/60 overflow-auto max-h-40 mb-8 text-left font-mono border border-editorial">
               {this.state.error?.message}
             </pre>
             <button
               onClick={() => window.location.reload()}
-              className="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition-colors"
+              className="w-full bg-[#1c1c1a] text-[#f5f5f0] py-3 rounded-full font-sans text-xs uppercase tracking-widest hover:bg-[#1c1c1a]/90 transition-colors"
             >
               Recarregar Página
             </button>

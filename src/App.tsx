@@ -29,7 +29,7 @@ export default function App() {
   return (
     <ErrorBoundary>
       <BrowserRouter>
-        <div className="min-h-screen bg-gray-50 flex flex-col">
+        <div className="min-h-screen flex flex-col">
           <Navbar user={user} />
           <main className="flex-grow">
             <Routes>

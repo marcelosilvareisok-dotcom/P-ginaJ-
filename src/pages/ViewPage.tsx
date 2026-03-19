@@ -66,98 +66,98 @@ export default function ViewPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <main className="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen bg-[#f5f5f0] flex flex-col font-sans">
+      <main className="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-12">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-3xl shadow-xl border border-gray-100 max-w-2xl w-full overflow-hidden"
+          className="bg-white rounded-[2rem] border border-editorial max-w-3xl w-full overflow-hidden"
         >
           {/* Header Image Placeholder */}
-          <div className="h-48 sm:h-64 bg-gradient-to-br from-indigo-500 to-purple-600 relative">
-            <div className="absolute inset-0 bg-black/20"></div>
-            <div className="absolute bottom-6 left-6 right-6">
-              <span className="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-sm font-semibold tracking-wide uppercase shadow-sm">
+          <div className="h-48 sm:h-64 bg-[#e8e8e3] relative flex items-center justify-center overflow-hidden">
+            <div className="absolute w-[150%] h-[150%] bg-gradient-to-tr from-[#f5f5f0] to-transparent rounded-full opacity-50 blur-3xl mix-blend-multiply"></div>
+            <div className="absolute bottom-8 left-8 sm:left-12">
+              <span className="bg-white/80 backdrop-blur-md text-[#1c1c1a] px-4 py-1.5 rounded-full text-[10px] font-sans tracking-widest uppercase border border-editorial">
                 {page.serviceName}
               </span>
             </div>
           </div>
 
-          <div className="p-6 sm:p-10">
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight leading-tight mb-6">
+          <div className="p-8 sm:p-12 lg:p-16">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#1c1c1a] leading-[1.1] mb-8">
               {page.generatedTitle}
             </h1>
             
-            <div className="flex items-center gap-4 mb-8">
-              <div className="flex items-center gap-1 text-yellow-500">
-                <Star className="w-5 h-5 fill-current" />
-                <Star className="w-5 h-5 fill-current" />
-                <Star className="w-5 h-5 fill-current" />
-                <Star className="w-5 h-5 fill-current" />
-                <Star className="w-5 h-5 fill-current" />
+            <div className="flex items-center gap-4 mb-12">
+              <div className="flex items-center gap-1 text-[#1c1c1a]">
+                <Star className="w-4 h-4 fill-current" />
+                <Star className="w-4 h-4 fill-current" />
+                <Star className="w-4 h-4 fill-current" />
+                <Star className="w-4 h-4 fill-current" />
+                <Star className="w-4 h-4 fill-current" />
               </div>
-              <span className="text-gray-500 font-medium">Serviço Recomendado</span>
+              <span className="text-[#1c1c1a]/60 font-light text-sm uppercase tracking-widest">Serviço Recomendado</span>
             </div>
 
-            <div className="prose prose-lg text-gray-600 mb-10">
-              <p className="leading-relaxed whitespace-pre-wrap">{page.generatedDescription}</p>
+            <div className="prose prose-lg text-[#1c1c1a]/80 font-light mb-12">
+              <p className="leading-relaxed whitespace-pre-wrap text-lg">{page.generatedDescription}</p>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-4 mb-10">
+            <div className="flex flex-col sm:flex-row items-center gap-4 mb-16">
               <button
                 onClick={handlePlayAudio}
                 disabled={audioLoading || playing}
-                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-6 py-3 rounded-xl font-semibold transition-colors disabled:opacity-50"
+                className="w-full sm:w-auto flex items-center justify-center gap-3 border border-[#1c1c1a] hover:bg-[#1c1c1a] hover:text-[#f5f5f0] text-[#1c1c1a] px-8 py-3 rounded-full font-sans text-xs uppercase tracking-widest transition-all disabled:opacity-50"
               >
                 {audioLoading ? (
-                  <Loader2 className="w-5 h-5 animate-spin" />
+                  <Loader2 className="w-4 h-4 animate-spin" />
                 ) : playing ? (
-                  <Volume2 className="w-5 h-5 text-indigo-600 animate-pulse" />
+                  <Volume2 className="w-4 h-4 animate-pulse" />
                 ) : (
-                  <Volume2 className="w-5 h-5" />
+                  <Volume2 className="w-4 h-4" />
                 )}
                 {playing ? 'Ouvindo...' : 'Ouvir Descrição'}
               </button>
             </div>
 
-            <div className="bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-100">
-              <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
+            <div className="bg-[#f5f5f0] rounded-3xl p-8 sm:p-10 border border-editorial">
+              <div className="flex flex-col sm:flex-row justify-between items-center gap-8">
                 <div>
-                  <p className="text-sm font-bold text-gray-500 uppercase tracking-wide mb-1">Investimento</p>
-                  <p className="text-3xl font-extrabold text-gray-900">{page.price}</p>
+                  <p className="text-[10px] font-sans text-[#1c1c1a]/60 uppercase tracking-widest mb-2">Investimento</p>
+                  <p className="text-4xl font-serif text-[#1c1c1a]">{page.price}</p>
                 </div>
                 <button
                   onClick={handleWhatsApp}
-                  className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl font-bold shadow-lg shadow-green-200 transition-all hover:-translate-y-1 flex items-center justify-center gap-2 text-lg"
+                  className="w-full sm:w-auto bg-[#25D366] hover:bg-[#20bd5a] text-white px-8 py-4 rounded-full font-sans text-sm uppercase tracking-widest transition-transform hover:scale-105 flex items-center justify-center gap-3"
                 >
-                  <MessageCircle className="w-6 h-6" />
+                  <MessageCircle className="w-5 h-5" />
                   Falar no WhatsApp
                 </button>
               </div>
             </div>
           </div>
           
-          <div className="bg-gray-50 p-6 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="w-5 h-5 text-green-500" />
-              <span>Página verificada e segura</span>
+          <div className="bg-white p-8 border-t border-editorial flex flex-col sm:flex-row justify-between items-center gap-6 text-xs text-[#1c1c1a]/60 font-sans uppercase tracking-widest">
+            <div className="flex items-center gap-3">
+              <ShieldCheck className="w-4 h-4 text-[#1c1c1a]" />
+              <span>Página verificada</span>
             </div>
             <button 
               onClick={() => {
                 navigator.clipboard.writeText(window.location.href);
                 alert('Link copiado!');
               }}
-              className="flex items-center gap-2 hover:text-gray-900 transition-colors font-medium"
+              className="flex items-center gap-2 hover:text-[#1c1c1a] transition-colors"
             >
               <Share2 className="w-4 h-4" />
-              Compartilhar Página
+              Compartilhar
             </button>
           </div>
         </motion.div>
       </main>
       
-      <footer className="py-6 text-center text-gray-400 text-sm">
-        Criado com <a href="/" className="font-bold text-gray-500 hover:text-indigo-600 transition-colors">PáginaJá</a>
+      <footer className="py-8 text-center text-[#1c1c1a]/40 text-xs font-sans uppercase tracking-widest">
+        Criado com <a href="/" className="text-[#1c1c1a] hover:underline transition-all">PáginaJá.</a>
       </footer>
     </div>
   );

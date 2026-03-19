@@ -28,31 +28,27 @@ export default function Navbar({ user }: { user: User | null }) {
   };
 
   return (
-    <nav className="bg-white border-b border-gray-100 sticky top-0 z-40">
+    <nav className="border-b border-editorial sticky top-0 z-40 bg-[#f5f5f0]/80 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
+        <div className="flex justify-between h-20">
           <div className="flex items-center">
-            <Link to="/" className="flex items-center gap-2">
-              <div className="bg-indigo-600 p-1.5 rounded-lg">
-                <Zap className="w-5 h-5 text-white" />
-              </div>
-              <span className="font-bold text-xl text-gray-900 tracking-tight">PáginaJá</span>
+            <Link to="/" className="flex items-center gap-2 group">
+              <span className="font-serif italic text-2xl tracking-tight text-[#1c1c1a] group-hover:opacity-70 transition-opacity">PáginaJá.</span>
             </Link>
           </div>
           
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
             {user ? (
               <>
                 <Link 
                   to="/dashboard" 
-                  className="text-gray-600 hover:text-indigo-600 font-medium flex items-center gap-2 text-sm"
+                  className="text-[#1c1c1a] hover:opacity-70 font-medium flex items-center gap-2 text-xs uppercase tracking-widest transition-opacity"
                 >
-                  <LayoutDashboard className="w-4 h-4" />
                   <span className="hidden sm:inline">Dashboard</span>
                 </Link>
                 <button
                   onClick={() => signOut(auth)}
-                  className="text-gray-500 hover:text-red-600 flex items-center gap-2 text-sm p-2"
+                  className="text-[#1c1c1a]/60 hover:text-[#1c1c1a] flex items-center gap-2 text-sm p-2 transition-colors"
                   title="Sair"
                 >
                   <LogOut className="w-4 h-4" />
@@ -61,7 +57,7 @@ export default function Navbar({ user }: { user: User | null }) {
             ) : (
               <button
                 onClick={handleLogin}
-                className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-medium text-sm transition-colors"
+                className="border border-[#1c1c1a] text-[#1c1c1a] hover:bg-[#1c1c1a] hover:text-[#f5f5f0] px-6 py-2.5 rounded-full font-medium text-xs uppercase tracking-widest transition-all"
               >
                 Entrar
               </button>

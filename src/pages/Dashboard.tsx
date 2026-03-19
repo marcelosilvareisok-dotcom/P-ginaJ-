@@ -29,83 +29,80 @@ export default function Dashboard({ user }: { user: User }) {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-4">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-6">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2 flex items-center gap-3">
-            <LayoutDashboard className="w-8 h-8 text-indigo-600" />
-            Meu Painel
-          </h1>
-          <p className="text-gray-500">Gerencie suas páginas de serviço e acompanhe os resultados.</p>
+          <h1 className="text-4xl font-serif text-[#1c1c1a] mb-2">Painel</h1>
+          <p className="text-[#1c1c1a]/60 font-light">Gerencie suas páginas de serviço e acompanhe os resultados.</p>
         </div>
         <Link
           to="/create"
-          className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-bold shadow-sm transition-all hover:-translate-y-0.5 flex items-center gap-2"
+          className="bg-[#1c1c1a] text-[#f5f5f0] px-6 py-3 rounded-full font-sans text-xs uppercase tracking-widest transition-transform hover:scale-105 flex items-center gap-2"
         >
-          <Plus className="w-5 h-5" />
+          <Plus className="w-4 h-4" />
           Nova Página
         </Link>
       </div>
 
       {pages.length === 0 ? (
-        <div className="bg-white rounded-3xl border border-gray-100 p-12 text-center shadow-sm">
-          <div className="w-20 h-20 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-6">
-            <Plus className="w-10 h-10 text-indigo-600" />
+        <div className="bg-white rounded-[2rem] border border-editorial p-16 text-center">
+          <div className="w-20 h-20 bg-[#f5f5f0] rounded-full flex items-center justify-center mx-auto mb-8">
+            <Plus className="w-8 h-8 text-[#1c1c1a]" />
           </div>
-          <h3 className="text-xl font-bold text-gray-900 mb-2">Você ainda não tem páginas</h3>
-          <p className="text-gray-500 mb-8 max-w-md mx-auto">
+          <h3 className="text-2xl font-serif text-[#1c1c1a] mb-4">Você ainda não tem páginas</h3>
+          <p className="text-[#1c1c1a]/60 font-light mb-10 max-w-md mx-auto">
             Crie sua primeira página de serviço agora mesmo e comece a vender online de forma profissional.
           </p>
           <Link
             to="/create"
-            className="bg-gray-900 hover:bg-black text-white px-8 py-3 rounded-xl font-bold transition-colors inline-block"
+            className="border border-[#1c1c1a] text-[#1c1c1a] hover:bg-[#1c1c1a] hover:text-[#f5f5f0] px-8 py-3 rounded-full font-sans text-xs uppercase tracking-widest transition-all inline-block"
           >
             Criar Minha Primeira Página
           </Link>
         </div>
       ) : (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {pages.map((page, index) => (
             <motion.div
               key={page.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow group relative"
+              className="bg-white rounded-3xl border border-editorial p-8 hover:border-[#1c1c1a]/30 transition-colors group relative flex flex-col h-full"
             >
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="font-bold text-lg text-gray-900 line-clamp-1" title={page.serviceName}>
+              <div className="flex justify-between items-start mb-6">
+                <h3 className="font-serif text-xl text-[#1c1c1a] line-clamp-1" title={page.serviceName}>
                   {page.serviceName}
                 </h3>
-                <span className="bg-green-100 text-green-800 text-xs font-bold px-2.5 py-1 rounded-full whitespace-nowrap">
+                <span className="bg-[#f5f5f0] text-[#1c1c1a] text-[10px] uppercase tracking-widest px-3 py-1 rounded-full whitespace-nowrap">
                   Ativa
                 </span>
               </div>
               
-              <p className="text-gray-500 text-sm line-clamp-2 mb-6 h-10">
+              <p className="text-[#1c1c1a]/60 font-light text-sm line-clamp-2 mb-8 flex-grow">
                 {page.generatedTitle}
               </p>
 
-              <div className="flex items-center gap-4 text-sm text-gray-500 mb-6">
-                <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-6 text-xs font-sans uppercase tracking-widest text-[#1c1c1a]/40 mb-8">
+                <div className="flex items-center gap-2">
                   <Eye className="w-4 h-4" />
-                  <span className="font-medium">{page.views || 0} acessos</span>
+                  <span>{page.views || 0} acessos</span>
                 </div>
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-2">
                   <Clock className="w-4 h-4" />
                   <span>
-                    {page.createdAt ? format(page.createdAt.toDate(), "dd 'de' MMM", { locale: ptBR }) : 'Agora'}
+                    {page.createdAt ? format(page.createdAt.toDate(), "dd MMM", { locale: ptBR }) : 'Agora'}
                   </span>
                 </div>
               </div>
 
-              <div className="pt-6 border-t border-gray-100 flex gap-3">
+              <div className="pt-6 border-t border-editorial flex flex-wrap gap-2">
                 <Link
                   to={`/p/${page.id}`}
                   target="_blank"
-                  className="flex-1 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-4 py-2.5 rounded-xl font-semibold text-sm transition-colors flex items-center justify-center gap-2"
+                  className="flex-1 bg-[#1c1c1a] hover:bg-[#1c1c1a]/90 text-[#f5f5f0] px-4 py-2.5 rounded-full font-sans text-[10px] uppercase tracking-widest transition-colors flex items-center justify-center gap-2"
                 >
-                  <ExternalLink className="w-4 h-4" />
+                  <ExternalLink className="w-3 h-3" />
                   Ver Página
                 </Link>
                 <button
@@ -125,7 +122,7 @@ export default function Dashboard({ user }: { user: User }) {
                       });
                     }
                   }}
-                  className="bg-gray-50 hover:bg-gray-100 text-gray-700 px-4 py-2.5 rounded-xl font-semibold text-sm transition-colors"
+                  className="bg-[#f5f5f0] hover:bg-[#e8e8e3] text-[#1c1c1a] px-4 py-2.5 rounded-full font-sans text-[10px] uppercase tracking-widest transition-colors"
                   title="Analisar Concorrentes Locais"
                 >
                   Analisar
@@ -135,7 +132,7 @@ export default function Dashboard({ user }: { user: User }) {
                     navigator.clipboard.writeText(`${window.location.origin}/p/${page.id}`);
                     alert('Link copiado!');
                   }}
-                  className="bg-gray-50 hover:bg-gray-100 text-gray-700 px-4 py-2.5 rounded-xl font-semibold text-sm transition-colors"
+                  className="bg-[#f5f5f0] hover:bg-[#e8e8e3] text-[#1c1c1a] px-4 py-2.5 rounded-full font-sans text-[10px] uppercase tracking-widest transition-colors"
                 >
                   Copiar
                 </button>
