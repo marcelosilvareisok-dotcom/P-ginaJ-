@@ -1,8 +1,26 @@
 import { GoogleGenAI, Type, Modality } from '@google/genai';
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+let aiInstance: GoogleGenAI | null = null;
+
+function getAI() {
+  if (!aiInstance) {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      console.warn("GEMINI_API_KEY is missing. AI features will not work.");
+      // Return a dummy instance or throw a more graceful error that can be caught
+      // by the calling functions without crashing the whole app on load.
+      // We'll initialize with a dummy key so the app doesn't crash on startup,
+      // but API calls will fail when attempted.
+      aiInstance = new GoogleGenAI({ apiKey: 'dummy-key-to-prevent-crash' });
+    } else {
+      aiInstance = new GoogleGenAI({ apiKey });
+    }
+  }
+  return aiInstance;
+}
 
 export async function generatePageContent(serviceName: string, description: string, price: string) {
+  const ai = getAI();
   const prompt = `
     You are an expert copywriter and marketer.
     A user wants to create a professional service page.
@@ -36,6 +54,7 @@ export async function generatePageContent(serviceName: string, description: stri
 }
 
 export async function generateSpeech(text: string) {
+  const ai = getAI();
   const response = await ai.models.generateContent({
     model: 'gemini-2.5-flash-preview-tts',
     contents: [{ parts: [{ text }] }],
@@ -55,6 +74,7 @@ export async function generateSpeech(text: string) {
 }
 
 export async function findLocalCompetitors(serviceName: string, lat: number, lng: number) {
+  const ai = getAI();
   const response = await ai.models.generateContent({
     model: 'gemini-2.5-flash',
     contents: `Quais são os principais concorrentes locais para o serviço de "${serviceName}" perto de mim? Me dê dicas de como me destacar deles.`,
@@ -78,6 +98,7 @@ export async function findLocalCompetitors(serviceName: string, lat: number, lng
 }
 
 export async function chatWithBot(history: any[], message: string) {
+  const ai = getAI();
   const chat = ai.chats.create({
     model: 'gemini-3.1-pro-preview',
     config: {
