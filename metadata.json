@@ -1,0 +1,5 @@
+{
+  "name": "PáginaJá",
+  "description": "SaaS de criação de páginas de serviço express. Crie uma página profissional em menos de 1 minuto, apenas respondendo 3 perguntas simples.",
+  "requestFramePermissions": ["geolocation"]
+}

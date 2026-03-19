@@ -1,0 +1,105 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "A user of the PáginaJá platform.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "The user's unique ID."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "The user's email address."
+        },
+        "name": {
+          "type": "string",
+          "description": "The user's display name."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the user account was created."
+        }
+      },
+      "required": ["uid", "email", "name", "createdAt"]
+    },
+    "Page": {
+      "title": "Service Page",
+      "description": "A generated service page.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The ID of the user who created the page."
+        },
+        "serviceName": {
+          "type": "string",
+          "description": "The name of the service."
+        },
+        "description": {
+          "type": "string",
+          "description": "The original description provided by the user."
+        },
+        "price": {
+          "type": "string",
+          "description": "The price of the service."
+        },
+        "whatsapp": {
+          "type": "string",
+          "description": "The WhatsApp number for contact."
+        },
+        "generatedTitle": {
+          "type": "string",
+          "description": "The AI-generated title for the page."
+        },
+        "generatedDescription": {
+          "type": "string",
+          "description": "The AI-generated optimized description."
+        },
+        "theme": {
+          "type": "string",
+          "description": "The visual theme of the page."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the page was created."
+        },
+        "views": {
+          "type": "number",
+          "description": "Number of times the page was viewed."
+        },
+        "published": {
+          "type": "boolean",
+          "description": "Whether the page is publicly visible."
+        }
+      },
+      "required": [
+        "userId",
+        "serviceName",
+        "description",
+        "price",
+        "whatsapp",
+        "generatedTitle",
+        "generatedDescription",
+        "theme",
+        "createdAt",
+        "views",
+        "published"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Stores user profiles."
+    },
+    "/pages/{pageId}": {
+      "schema": { "$ref": "#/entities/Page" },
+      "description": "Stores generated service pages."
+    }
+  }
+}
